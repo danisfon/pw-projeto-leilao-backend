@@ -22,6 +22,13 @@ public class ExcecaoGlobal {
         return new ResponseEntity<>(respostaErro, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(NegocioExcecao.class)
+    public ResponseEntity<RespostaErro> negocioExcecao(NegocioExcecao ex, WebRequest request) {
+        RespostaErro respostaErro = new RespostaErro(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Erro de negocio",
+                ex.getMessage(), request.getDescription(false), null);
+        return new ResponseEntity<>(respostaErro, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<RespostaErro> validacao(MethodArgumentNotValidException ex, WebRequest request) {
 
