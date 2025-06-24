@@ -28,9 +28,9 @@ public class ExcecaoGlobal {
         List<String> errors = ex.getBindingResult().getFieldErrors().stream()
                 .map(err -> err.getField() + ": " + err.getDefaultMessage()).collect(Collectors.toList());
 
-        RespostaErro respostaErro = new RespostaErro(HttpStatus.NOT_FOUND.value(), "Não encontrado",
-                ex.getMessage(), request.getDescription(false), errors);
-        return new ResponseEntity<>(respostaErro, HttpStatus.NOT_FOUND);
+        RespostaErro respostaErro = new RespostaErro(HttpStatus.BAD_REQUEST.value(), "Erro de validacao",
+                "Campos invalidos", request.getDescription(false), errors);
+        return new ResponseEntity<>(respostaErro, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
