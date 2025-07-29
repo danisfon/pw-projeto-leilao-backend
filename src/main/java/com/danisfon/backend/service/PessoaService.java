@@ -27,19 +27,19 @@ public class PessoaService {
     @Autowired
     private EmailService emailService;
 
-    public Pessoa inserir(Pessoa pessoa){
+    public Pessoa inserir(Pessoa pessoa) {
         Pessoa pessoaCadastrada = pessoaRepository.save(pessoa);
-        //emailService.enviarEmailSimples(pessoaCadastrada.getEmail(), 
-        //"Cadastrado com Sucesso", "Cadastro no Sistema de Leilão XXX foi feito com sucesso!");
+        // emailService.enviarEmailSimples(pessoaCadastrada.getEmail(),
+        // "Cadastrado com Sucesso", "Cadastro no Sistema de Leilão XXX foi feito com
+        // sucesso!");
         enviarEmailSucesso(pessoaCadastrada);
         return pessoaCadastrada;
     }
 
-    private void enviarEmailSucesso(Pessoa pessoa){
+    private void enviarEmailSucesso(Pessoa pessoa) {
         Context context = new Context();
         context.setVariable("nome", pessoa.getNome());
-        emailService.emailTemplate
-        (pessoa.getEmail(),"Cadastro Sucesso", context, "cadastroSucesso");
+        emailService.emailTemplate(pessoa.getEmail(), "Cadastro Sucesso", context, "cadastroSucesso");
 
     }
 
@@ -64,7 +64,7 @@ public class PessoaService {
                         new Object[] { id }, LocaleContextHolder.getLocale())));
     }
 
-    public Page<Pessoa> buscarTodos(Pageable pageable){
+    public Page<Pessoa> buscarTodos(Pageable pageable) {
         return pessoaRepository.findAll(pageable);
     }
 }
