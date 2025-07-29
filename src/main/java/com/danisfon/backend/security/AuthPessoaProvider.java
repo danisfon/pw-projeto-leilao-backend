@@ -26,7 +26,6 @@ public class AuthPessoaProvider {
             System.out.println(username);
         } else {
             username = principal.toString();
-            System.out.println("AAA "+username);
         }
 
         return userRepository.findByEmail(username)
