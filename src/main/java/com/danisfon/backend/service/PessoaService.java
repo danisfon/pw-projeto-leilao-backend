@@ -1,9 +1,5 @@
 package com.danisfon.backend.service;
 
-import java.rmi.NoSuchObjectException;
-import java.util.List;
-import java.util.NoSuchElementException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -29,9 +25,6 @@ public class PessoaService {
 
     public Pessoa inserir(Pessoa pessoa) {
         Pessoa pessoaCadastrada = pessoaRepository.save(pessoa);
-        // emailService.enviarEmailSimples(pessoaCadastrada.getEmail(),
-        // "Cadastrado com Sucesso", "Cadastro no Sistema de Leilão XXX foi feito com
-        // sucesso!");
         enviarEmailSucesso(pessoaCadastrada);
         return pessoaCadastrada;
     }
