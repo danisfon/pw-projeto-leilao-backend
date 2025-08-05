@@ -13,6 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -28,6 +29,7 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 @Data
 @Table(name = "pessoa")
+@JsonIgnoreProperties({"authorities", "password", "username", "enabled", "accountNonLocked", "credentialsNonExpired", "accountNonExpired"})
 public class Pessoa implements UserDetails {
 
     @Id
