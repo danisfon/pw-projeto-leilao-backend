@@ -13,37 +13,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.danisfon.backend.model.Pessoa;
-import com.danisfon.backend.service.PessoaService;
+import com.danisfon.backend.model.Lance;
+import com.danisfon.backend.service.LanceService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/pessoa")
-public class PessoaController {
-
+@RequestMapping("/lance")
+public class LanceController {
     @Autowired
-    private PessoaService pessoaService;
+    private LanceService lanceService;
 
     @GetMapping
-    public ResponseEntity <Page<Pessoa>> buscarTodos(Pageable pageable){
-        return ResponseEntity.ok(pessoaService.buscarTodos(pageable));
+    public ResponseEntity<Page<Lance>> buscarTodos(Pageable pageable) {
+        return ResponseEntity.ok(lanceService.buscarTodos(pageable));
     }
 
     @PostMapping
-    public ResponseEntity<Pessoa> inserir(@Valid @RequestBody Pessoa pessoa) {
-        return ResponseEntity.ok(pessoaService.inserir(pessoa));
+    public ResponseEntity<Lance> inserir(@Valid @RequestBody Lance lance) {
+        return ResponseEntity.ok(lanceService.inserir(lance));
     }
 
     @PutMapping
-    public ResponseEntity<Pessoa> alterar(@Valid @RequestBody Pessoa pessoa) {
-        return ResponseEntity.ok(pessoaService.alterar(pessoa));
+    public ResponseEntity<Lance> alterar(@Valid @RequestBody Lance lance) {
+        return ResponseEntity.ok(lanceService.alterar(lance));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> excluir(@PathVariable("id") Long id) {
-        pessoaService.excluir(id);
-        return ResponseEntity.ok("Pessoa excluída com sucesso!");
+        lanceService.excluir(id);
+        return ResponseEntity.ok("Lance excluído com sucesso!");
     }
-
 }

@@ -42,7 +42,7 @@ public class PerfilController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> excluir(@PathVariable("id") Long id) {
         perfilService.excluir(id);
-        return ResponseEntity.ok("Excluindo");
+        return ResponseEntity.ok("Perfil excluído com sucesso!");
     }
 
 }
