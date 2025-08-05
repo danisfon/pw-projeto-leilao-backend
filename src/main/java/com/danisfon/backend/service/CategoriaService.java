@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.danisfon.backend.exception.NaoEncontradoExcecao;
 import com.danisfon.backend.model.Categoria;
-import com.danisfon.backend.model.Perfil;
 import com.danisfon.backend.repository.CategoriaRepository;
 
 @Service
@@ -25,5 +24,26 @@ public class CategoriaService {
         return categoriaCadastrado;
     }
 
+    public Categoria alterar(Categoria categoria) {
+        Categoria categoriaBanco = buscarPorId(categoria.getId());
+        categoriaBanco.setNome(categoria.getNome());
+
+        return categoriaRepository.save(categoriaBanco);
+    }
+
+    public void excluir(long id) {
+        Categoria categoriaBanco = buscarPorId(id);
+        categoriaRepository.delete(categoriaBanco);
+    }
+
+    public Categoria buscarPorId(Long id) {
+        return categoriaRepository.findById(id)
+                .orElseThrow(() -> new NaoEncontradoExcecao(messageSource.getMessage("categoria.notfound",
+                        new Object[] { id }, LocaleContextHolder.getLocale())));
+    }
+
+    public Page<Categoria> buscarTodos(Pageable pageable) {
+        return categoriaRepository.findAll(pageable);
+    }
 
 }
