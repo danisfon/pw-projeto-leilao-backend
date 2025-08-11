@@ -46,8 +46,8 @@ public class ConfiguracaoSeguranca {
              .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(authorize -> authorize
             .requestMatchers("/autenticacao/**").permitAll()
-            .requestMatchers("/perfil").permitAll()
-            .requestMatchers("/pessoa").permitAll()
+            .requestMatchers("/perfil/**").permitAll()
+            .requestMatchers("/pessoa/**").permitAll()
             .requestMatchers("/categoria/**").permitAll()
             .requestMatchers("/lance/**").permitAll()
             .requestMatchers("/leilao/public").permitAll()
