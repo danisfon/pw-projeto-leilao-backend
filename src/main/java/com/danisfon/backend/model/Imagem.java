@@ -12,7 +12,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "imagem")
-public class Feedback {
+public class Imagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
