@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -17,7 +18,10 @@ public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotBlank(message = "{validation.valor.notblank}")
     private float valor;
+    @NotBlank(message = "{validation.data.notblank}")
     private LocalDateTime dataHora;
+    @NotBlank(message = "{validation.campo.notblank}")
     private String status;
 }

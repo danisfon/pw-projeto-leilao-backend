@@ -17,5 +17,6 @@ public class Categoria {
     private long id;
     @NotBlank(message = "{validation.name.notblank}")
     private String nome;
+    @NotBlank(message = "{validation.campo.notblank}")
     private String observacao;
 }

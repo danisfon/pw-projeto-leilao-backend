@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -17,6 +18,8 @@ public class Imagem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotBlank(message = "{validation.data.notblank}")
     private LocalDateTime dataHoraCadastro;
+    @NotBlank(message = "{validation.campo.notblank}")
     private String nomeImagem;
 }

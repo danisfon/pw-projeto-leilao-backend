@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Data
@@ -17,6 +18,8 @@ public class Lance {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotBlank(message = "{validation.valor.notblank}")
     private Float valorLance;
+    @NotBlank(message = "{validation.data.notblank}")
     private LocalDateTime dataHora;
 }
