@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.danisfon.backend.dto.AlterarSenhaCodigoRequest;
+import com.danisfon.backend.dto.RecuperarSenhaRequest;
 import com.danisfon.backend.model.Pessoa;
 import com.danisfon.backend.service.PessoaService;
 
@@ -44,6 +46,18 @@ public class PessoaController {
     public ResponseEntity<String> excluir(@PathVariable("id") Long id) {
         pessoaService.excluir(id);
         return ResponseEntity.ok("Pessoa excluída com sucesso!");
+    }
+
+    @PostMapping("/recuperar-senha")
+    public ResponseEntity<Void> solicitarRecuperacao(@RequestBody RecuperarSenhaRequest request) {
+        pessoaService.solicitarRecuperacaoSenha(request.getEmail());
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/alterar-senha-codigo")
+    public ResponseEntity<Void> alterarSenhaCodigo(@RequestBody AlterarSenhaCodigoRequest request) {
+        pessoaService.alterarSenhaComCodigo(request.getEmail(), request.getCodigo(), request.getNovaSenha());
+        return ResponseEntity.ok().build();
     }
 
 }

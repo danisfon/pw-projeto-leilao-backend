@@ -1,9 +1,6 @@
 package com.danisfon.backend.model;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
-
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +23,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
 
 @Entity
 @Data
@@ -42,6 +43,13 @@ public class Pessoa implements UserDetails {
     private String email;
     @JsonIgnore
     private String senha;
+    
+    @Column(name = "codigo_validacao")
+    private String codigoValidacao;
+
+    @Column(name = "validade_codigo_validacao")
+    private LocalDateTime validadeCodigoValidacao;
+
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Setter(value = AccessLevel.NONE)
