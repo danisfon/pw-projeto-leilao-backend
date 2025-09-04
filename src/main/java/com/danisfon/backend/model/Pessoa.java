@@ -55,6 +55,22 @@ public class Pessoa implements UserDetails {
     @Setter(value = AccessLevel.NONE)
     private List<PessoaPerfil> pessoaPerfil;
 
+    @OneToMany(mappedBy = "criador", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
+    private List<Categoria> categorias;
+
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
+    private List<Leilao> leiloes;
+
+    @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
+    private List<Lance> lances;
+
+    @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY)
+    private List<Feedback> feedbacks;
+
+    @OneToMany(mappedBy = "destinatario", fetch = FetchType.LAZY)
+    private List<Feedback> recebidos;
+
+
     public void setpessoaPerfil(List<PessoaPerfil> pessoaPerfil) {
         for (PessoaPerfil p : pessoaPerfil) {
             p.setPessoa(this);

@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -24,4 +26,13 @@ public class Feedback {
     private LocalDateTime dataHora;
     @NotBlank(message = "{validation.comentario.notblank}")
     private String comentario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pessoa_autor")
+    private Pessoa autor;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pessoa_destinatario")
+    private Pessoa destinatario;
+
 }

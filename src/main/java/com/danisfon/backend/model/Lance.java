@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -22,4 +24,13 @@ public class Lance {
     private Float valorLance;
     @NotBlank(message = "{validation.data.notblank}")
     private LocalDateTime dataHora;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pessoa")
+    private Pessoa pessoa;
+
+    @ManyToOne
+    @JoinColumn(name = "id_leilao")
+    private Leilao leilao;
+
 }

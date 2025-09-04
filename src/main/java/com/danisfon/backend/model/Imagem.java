@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -22,4 +24,9 @@ public class Imagem {
     private LocalDateTime dataHoraCadastro;
     @NotBlank(message = "{validation.campo.notblank}")
     private String nomeImagem;
+
+    @ManyToOne
+    @JoinColumn(name = "id_leilao")
+    private Leilao leilao;
+
 }
