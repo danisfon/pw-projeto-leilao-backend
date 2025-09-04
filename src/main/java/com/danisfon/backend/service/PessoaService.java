@@ -116,6 +116,17 @@ public class PessoaService implements UserDetailsService{
         pessoaRepository.save(pessoa);
     }
 
+    @Transactional
+    public void alterarSenhaAutenticado(Long idPessoa, String senhaAtual, String novaSenha) {
+        Pessoa pessoa = pessoaRepository.findById(idPessoa)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+        if (!encoder.matches(senhaAtual, pessoa.getSenha())) {
+            throw new RuntimeException("Senha atual incorreta");
+        }
+
+        pessoa.setSenha(encoder.encode(novaSenha));
+        pessoaRepository.save(pessoa);
+    }
 
 }

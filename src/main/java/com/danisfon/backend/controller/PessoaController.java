@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.danisfon.backend.dto.AlterarSenhaCodigoRequest;
+import com.danisfon.backend.dto.AlterarSenhaRequest;
 import com.danisfon.backend.dto.RecuperarSenhaRequest;
 import com.danisfon.backend.model.Pessoa;
 import com.danisfon.backend.service.PessoaService;
+
+import org.springframework.security.core.Authentication;
 
 import jakarta.validation.Valid;
 
@@ -60,4 +64,11 @@ public class PessoaController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/alterar-senha")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<Void> alterarSenha(@RequestBody AlterarSenhaRequest request, Authentication authentication) {
+        Pessoa usuarioLogado = (Pessoa) authentication.getPrincipal();
+        pessoaService.alterarSenhaAutenticado(usuarioLogado.getId(), request.getSenhaAtual(), request.getNovaSenha());
+        return ResponseEntity.ok().build();
+    }
 }
