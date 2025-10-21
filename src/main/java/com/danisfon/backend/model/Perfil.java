@@ -24,7 +24,7 @@ public class Perfil {
     @NotBlank(message = "{validation.name.notblank}")
     private String nome;
 
-    @OneToMany(mappedBy = "perfil", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<PessoaPerfil> pessoaPerfil;
+    // @OneToMany(mappedBy = "perfil", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    // private List<PessoaPerfil> pessoaPerfil;
 
 }

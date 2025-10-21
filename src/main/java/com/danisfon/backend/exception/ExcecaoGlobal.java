@@ -15,35 +15,61 @@ import com.danisfon.backend.dto.RespostaErro;
 @RestControllerAdvice
 public class ExcecaoGlobal {
 
-    @ExceptionHandler(NaoEncontradoExcecao.class)
-    public ResponseEntity<RespostaErro> naoEncontrado(NaoEncontradoExcecao ex, WebRequest request) {
-        RespostaErro respostaErro = new RespostaErro(HttpStatus.NOT_FOUND.value(), "Não encontrado",
-                ex.getMessage(), request.getDescription(false), null);
-        return new ResponseEntity<>(respostaErro, HttpStatus.NOT_FOUND);
-    }
+    // @ExceptionHandler(NaoEncontradoExcecao.class)
+    // public ResponseEntity<RespostaErro> naoEncontrado(NaoEncontradoExcecao ex, WebRequest request) {
+    //     RespostaErro respostaErro = new RespostaErro(HttpStatus.NOT_FOUND.value(), "Não encontrado",
+    //             ex.getMessage(), request.getDescription(false), null);
+    //     return new ResponseEntity<>(respostaErro, HttpStatus.NOT_FOUND);
+    // }
 
-    @ExceptionHandler(NegocioExcecao.class)
-    public ResponseEntity<RespostaErro> negocioExcecao(NegocioExcecao ex, WebRequest request) {
-        RespostaErro respostaErro = new RespostaErro(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Erro de negocio",
-                ex.getMessage(), request.getDescription(false), null);
+    // @ExceptionHandler(NegocioExcecao.class)
+    // public ResponseEntity<RespostaErro> negocioExcecao(NegocioExcecao ex, WebRequest request) {
+    //     RespostaErro respostaErro = new RespostaErro(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Erro de negocio",
+    //             ex.getMessage(), request.getDescription(false), null);
+    //     return new ResponseEntity<>(respostaErro, HttpStatus.UNPROCESSABLE_ENTITY);
+    // }
+
+    // @ExceptionHandler(MethodArgumentNotValidException.class)
+    // public ResponseEntity<RespostaErro> validacao(MethodArgumentNotValidException ex, WebRequest request) {
+
+    //     List<String> errors = ex.getBindingResult().getFieldErrors().stream()
+    //             .map(err -> err.getField() + ": " + err.getDefaultMessage()).collect(Collectors.toList());
+
+    //     RespostaErro respostaErro = new RespostaErro(HttpStatus.BAD_REQUEST.value(), "Erro de validacao",
+    //             "Campos invalidos", request.getDescription(false), errors);
+    //     return new ResponseEntity<>(respostaErro, HttpStatus.BAD_REQUEST);
+    // }
+
+    // @ExceptionHandler(Exception.class)
+    // public ResponseEntity<RespostaErro> global(Exception ex, WebRequest request) {
+    //     RespostaErro respostaErro = new RespostaErro(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro interno",
+    //             ex.getMessage(), request.getDescription(false), null);
+    //     return new ResponseEntity<>(respostaErro, HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
+
+        @ExceptionHandler(NegocioExcecao.class)
+    public ResponseEntity<RespostaErro>NegocioExcecao(NegocioExcecao ex, WebRequest request){
+
+        RespostaErro respostaErro = new RespostaErro(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Erro de Negócio", 
+        ex.getMessage(), request.getDescription(false), null);
         return new ResponseEntity<>(respostaErro, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<RespostaErro> validacao(MethodArgumentNotValidException ex, WebRequest request) {
 
-        List<String> errors = ex.getBindingResult().getFieldErrors().stream()
-                .map(err -> err.getField() + ": " + err.getDefaultMessage()).collect(Collectors.toList());
+    @ExceptionHandler(NaoEncontradoExcecao.class)
+    public ResponseEntity<RespostaErro>naoEncontrado(NaoEncontradoExcecao ex, WebRequest request){
 
-        RespostaErro respostaErro = new RespostaErro(HttpStatus.BAD_REQUEST.value(), "Erro de validacao",
-                "Campos invalidos", request.getDescription(false), errors);
-        return new ResponseEntity<>(respostaErro, HttpStatus.BAD_REQUEST);
+        RespostaErro respostaErro = new RespostaErro(HttpStatus.NOT_FOUND.value(), "Não Encontrado", 
+        ex.getMessage(), request.getDescription(false), null);
+        return new ResponseEntity<>(respostaErro, HttpStatus.NOT_FOUND);
     }
 
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<RespostaErro> global(Exception ex, WebRequest request) {
-        RespostaErro respostaErro = new RespostaErro(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro interno",
-                ex.getMessage(), request.getDescription(false), null);
+    public ResponseEntity<RespostaErro>global(Exception ex, WebRequest request){
+
+        RespostaErro respostaErro = new RespostaErro(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro Interno", 
+        ex.getMessage(), request.getDescription(false), null);
         return new ResponseEntity<>(respostaErro, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

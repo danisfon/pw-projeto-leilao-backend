@@ -25,8 +25,8 @@ public class Imagem {
     @NotBlank(message = "{validation.campo.notblank}")
     private String nomeImagem;
 
-    @ManyToOne
-    @JoinColumn(name = "id_leilao")
-    private Leilao leilao;
+    // @ManyToOne
+    // @JoinColumn(name = "id_leilao")
+    // private Leilao leilao;
 
 }

@@ -34,9 +34,13 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.inserir(pessoa));
     }
 
-    @PutMapping
-    public ResponseEntity<Categoria> alterar(@Valid @RequestBody Categoria pessoa) {
-        return ResponseEntity.ok(categoriaService.alterar(pessoa));
+    @PutMapping("/{id}")
+    public ResponseEntity<Categoria> alterar(
+        @PathVariable("id") Long id,
+        @Valid @RequestBody Categoria categoria
+    ) {
+        categoria.setId(id);  // Garante que o ID está correto
+        return ResponseEntity.ok(categoriaService.alterar(categoria));
     }
 
     @DeleteMapping("/{id}")

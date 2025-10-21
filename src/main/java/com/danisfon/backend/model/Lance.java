@@ -25,12 +25,12 @@ public class Lance {
     @NotBlank(message = "{validation.data.notblank}")
     private LocalDateTime dataHora;
 
-    @ManyToOne
-    @JoinColumn(name = "id_pessoa")
-    private Pessoa pessoa;
+    // @ManyToOne
+    // @JoinColumn(name = "id_pessoa")
+    // private Pessoa pessoa;
 
-    @ManyToOne
-    @JoinColumn(name = "id_leilao")
-    private Leilao leilao;
+    // @ManyToOne
+    // @JoinColumn(name = "id_leilao")
+    // private Leilao leilao;
 
 }

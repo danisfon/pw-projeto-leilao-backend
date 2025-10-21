@@ -14,4 +14,5 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
     // public Page<Pessoa> buscarEmail(@Param("email"))
 
     public Optional<Pessoa> findByEmail(String email);
+    boolean existsByEmail(String email);
 }

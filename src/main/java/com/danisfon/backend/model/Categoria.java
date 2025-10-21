@@ -27,11 +27,11 @@ public class Categoria {
     @NotBlank(message = "{validation.campo.notblank}")
     private String observacao;
 
-    @ManyToOne
-    @JoinColumn(name = "id_pessoa")
-    private Pessoa pessoa;
+    // @ManyToOne
+    // @JoinColumn(name = "id_pessoa")
+    // private Pessoa pessoa;
 
-    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
-    private List<Leilao> leiloes;
+    // @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    // private List<Leilao> leiloes;
 
 }
