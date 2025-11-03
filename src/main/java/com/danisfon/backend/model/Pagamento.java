@@ -1,4 +1,4 @@
-package com.danisfon.backend.model;
+    package com.danisfon.backend.model;
 
 import java.time.LocalDateTime;
 
@@ -22,7 +22,7 @@ public class Pagamento {
     private long id;
     @NotBlank(message = "{validation.valor.notblank}")
     private float valor;
-    @NotBlank(message = "{validation.data.notblank}")
+    @NotBlank(message = "{validation.data.notblank}")   
     private LocalDateTime dataHora;
     @NotBlank(message = "{validation.campo.notblank}")
     private String status;
