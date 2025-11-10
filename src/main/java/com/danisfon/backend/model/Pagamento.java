@@ -27,8 +27,8 @@ public class Pagamento {
     @NotBlank(message = "{validation.campo.notblank}")
     private String status;
 
-    // @OneToOne
-    // @JoinColumn(name = "id_leilao")
-    // private Leilao leilao;
+    @OneToOne
+    @JoinColumn(name = "id_leilao")
+    private Leilao leilao;
 
 }

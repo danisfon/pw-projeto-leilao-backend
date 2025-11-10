@@ -27,12 +27,12 @@ public class Feedback {
     @NotBlank(message = "{validation.comentario.notblank}")
     private String comentario;
 
-    // @ManyToOne
-    // @JoinColumn(name = "id_pessoa_autor")
-    // private Pessoa autor;
+    @ManyToOne
+    @JoinColumn(name = "id_pessoa_autor")
+    private Pessoa autor;
 
-    // @ManyToOne
-    // @JoinColumn(name = "id_pessoa_destinatario")
-    // private Pessoa destinatario;
+    @ManyToOne
+    @JoinColumn(name = "id_pessoa_destinatario")
+    private Pessoa destinatario;
 
 }
